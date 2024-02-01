@@ -41,3 +41,18 @@ x = s.split(''); //(11) ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
 
 console.log(s); // string {'Hello World'}
 console.log(x); // Hello World
+
+// ---------- Challenge ---------
+// change 'developer' to 'Developer'
+let myNewString;
+const myString = 'developer';
+
+myNewString = myString[0].toUpperCase() + myString.substring(1);
+
+myNewString = myString.replace(myString[0], myString[0].toUpperCase())
+
+const firstCharacter = myString[0];
+const firstUpperCharacter = myString[0].toUpperCase();
+myNewString = myString.replace(firstCharacter, firstUpperCharacter);
+
+console.log(myNewString)
