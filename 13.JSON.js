@@ -1,3 +1,7 @@
+//JSON - JavaScript Object Notation - storing data with simple readable format 
+//APIs - send and receive data from and to server
+//XML - Extensible Markup Language
+
 const posts = [
     {
         id :1,
@@ -20,6 +24,12 @@ const obj = JSON.parse(str); //{id: 1, title: 'Post One', body: 'This is the bod
 
 //access a specific property, first you need to parse it
 console.log(obj[0].id); // 1
+
+
+
+
+
+
 
 
 
