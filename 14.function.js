@@ -37,6 +37,7 @@ function registerUser2(user = 'Bot') {
 console.log(registerUser()); // Bot 
 console.log(registerUser('John')); // John is registered
 
+
 // ****Rest Params ****
 function sum(...numbers){
     let total = 0;
@@ -49,6 +50,7 @@ function sum(...numbers){
 }
 
 console.log(sum(1, 2, 3, 4)) // 10
+
 
 // ***** Objects as params *****
 function loginUser(user){
@@ -69,7 +71,8 @@ console.log(
     })
 ) //The user Sara with the id of 2 is logged in.
 
-//***** Arrays as Params *****
+
+//******* Arrays as Params *****
 function getRandom(arr){
     const randomIndex = Math.floor(Math.random() * arr.length);
 
@@ -87,5 +90,7 @@ function getRandom2(...arr){
     console.log(item)
 }
 getRandom2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // 1~10까지 여러 숫자 나옴
+
+
 
 
