@@ -73,6 +73,7 @@ console.log(
 
 
 //******* Arrays as Params *****
+//방법 1 
 function getRandom(arr){
     const randomIndex = Math.floor(Math.random() * arr.length);
 
@@ -81,7 +82,7 @@ function getRandom(arr){
 } 
 getRandom([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]); // 1~10까지 여러 숫자 나옴
 
-//get the same result above 
+//방법 2 
 //argument에 []를 없애고, param에 spread operator를 넣는다 
 function getRandom2(...arr){
     const randomIndex = Math.floor(Math.random() * arr.length);
@@ -90,6 +91,14 @@ function getRandom2(...arr){
     console.log(item)
 }
 getRandom2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // 1~10까지 여러 숫자 나옴
+
+
+
+// -------------- Practice: Convert Fahrenheit to Celsius ----
+const getCelsius = (fahrenheit) => console.log(`The temperature is ${(fahrenheit - 32) * 5 / 9} \xB0C`); 
+getCelsius(32);
+
+
 
 
 

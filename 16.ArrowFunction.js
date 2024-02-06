@@ -36,8 +36,15 @@ numbers.forEach( n => console.log(n))
 // 2
 // 3
 
-
-
-
 console.log(createObj());
 
+
+//--------------- Challenge 1 -----------------
+// 1. take an Array 
+// 2. find Max and Min numbers 
+// 3. return objects
+const minMax = (...numbers) => ({
+    min: Math.min(...numbers), max: Math.max(...numbers)
+}); //{min: 1, max: 5} 
+
+console.log(minMax(1, 2, 3, 4, 5))
