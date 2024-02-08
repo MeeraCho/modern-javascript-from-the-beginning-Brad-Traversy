@@ -16,9 +16,6 @@ d = new Date('07-10-2022');
 d = d.getTime(); //number 1657432800000 - millisecond in time
 d = d.valueOf(); //number 1657432800000 
 
-const date = new Date(10, 30, 2022, 8, 0, 0);
-const hour = date.getHours();
-
 
 // Date.now() & new Date()
 d = new Date(); // 현재 시간. object Thu Feb 01 2024 15:52:22 GMT-0700 (Mountain Standard Time)
@@ -26,7 +23,6 @@ d = Date.now(); //number 1706827099300 <- milliseconds
 d = new Date (1706827099300) // object Thu Feb 01 2024 15:38:19 GMT-0700 (Mountain Standard Time)
 
 d = Math.floor(Date.now() / 1000); //number 1706827838
-
 
 //Date Object 
 //get date and time 

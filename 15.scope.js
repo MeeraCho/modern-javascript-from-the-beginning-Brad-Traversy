@@ -1,6 +1,7 @@
 //global scope and function scope
 //var is global except function scope 
 
+
 const x = 100;
 const foo = 1;
 var bar = 2; //window object에 저장이 됨 
