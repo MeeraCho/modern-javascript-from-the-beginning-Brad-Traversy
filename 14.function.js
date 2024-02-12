@@ -97,6 +97,8 @@ getRandom2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // 1~10까지 여러 숫자 나옴
 
 
 
+
+
 // -------------- Practice: Convert Fahrenheit to Celsius ----
 const getCelsius = (fahrenheit) => console.log(`The temperature is ${(fahrenheit - 32) * 5 / 9} \xB0C`); 
 getCelsius(32);
