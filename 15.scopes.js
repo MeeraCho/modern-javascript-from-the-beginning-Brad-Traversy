@@ -1,13 +1,35 @@
-//global scope and function scope
+
+//--------global scope and function scope-----------
+//***** global scope - window object level
+window.alert('Hello') 
+alert('Hello') //window 생략
+
+console.log(window.innerWidth);
+console.log(innerWidth);
+
+
+//***** function scope *******/
+const z = 100;
+function run(){
+    console.log(window.innerHeight);
+    console.log(z, 'in function');
+}
+
+run();
+
+
+//--------------block scope--------------
+if (true) {
+    console.log(z, 'in block');
+}
+
 //var is global except function scope 
-
-
 const x = 100;
 const foo = 1;
 var bar = 2; //window object에 저장이 됨 
 
 if (true) {
-    const y = 200;
+    const y = 200; // block scope
     console.log(x + y);
 }
 // console.log(x + y); y is not defined
