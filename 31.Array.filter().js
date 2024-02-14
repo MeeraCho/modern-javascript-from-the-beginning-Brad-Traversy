@@ -1,5 +1,5 @@
 //high order array method
-//similar to forEach, but return a modified array 
+//similar to forEach, but return a new array based on the function that returns true
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 // make a variable to get the result
