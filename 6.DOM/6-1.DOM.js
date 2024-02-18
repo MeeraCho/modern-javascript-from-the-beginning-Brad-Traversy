@@ -9,7 +9,7 @@ console.log(document.body)
 console.log(document.body.innerHTML)
 console.log(document.body.innerText)
 
-// HTMLCollection 
+// HTMLCollection[] 
 // which is very similar to an array. 
 // You can access each link by index
 console.log(document.links);
