@@ -21,8 +21,10 @@
         <img src="images/note.png" alt="" />
         <h1>Shopping List</h1>
       </header>
+      <!-- form -->
       <form id="item-form" method="post">
         <div class="form-control">
+          <!-- Input -->
           <input
             type="text"
             class="form-input"
@@ -31,6 +33,18 @@
             placeholder="Enter Item"
           />
         </div>
+
+        <!-- Select Input -->
+        <select name="priority" id="priority-input" class="form-input">
+          <option value="0">Select Priority</option>
+          <option value="1">1001</option>
+          <option value="2">2001</option>
+          <option value="3">3001</option>
+        </select>
+
+        <!-- Checkbox Input -->
+        <input type="checkbox" id="checkbox"/> Recurring Item
+
         <div class="form-control">
           <button type="submit" class="btn">
             <i class="fa-solid fa-plus"></i> Add Item

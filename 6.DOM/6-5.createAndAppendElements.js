@@ -6,7 +6,7 @@ div.className = 'my-element';
 div.id = 'my-element';
 
 //create attributes 2
-div.setAttribute('title', 'My Element');
+div.setAttribute('title', 'My Element'); // title attribute에 My Element 이름으로 
 
 //add text 1
 div.innerText = 'Hello World'; //<div class="my-element" id="my-element" title="My Element">Hello World</div>

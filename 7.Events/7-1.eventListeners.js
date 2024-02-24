@@ -1,6 +1,6 @@
 const clearBtn = document.querySelector('#clear');
 
-// 1. inline html event listener - not recomended 
+// 1. inline html event listener & invoke a function in JS - not recomended 
 function onClear(){
     const itemList = document.querySelector('ul');
     const items = itemList.querySelectorAll('li');
