@@ -13,12 +13,15 @@ function onSubmit(e){
     }
 }   
 
+//formData object: lets you compile a set of key/value pairs to send using the Fetch or XMLHttpRequest API.
+//name attribute < input < form: Only form elements with a name attribute will have their values passed when submitting a form
+//FormData.entries() method: returns an iterator which iterates through all key/value pairs contained in the FormData. The key of each pair is a string object, and the value is either a string or a Blob.
 function onSubmit2(e){
     e.preventDefault();
     const formData = new FormData(form); //FormData{}
 
-    // const item = formData.get('item'); // item from name attribute - sdlkfsjdf
-    // const priority = formData.get('priority'); // 1 - 내가 선택한 필드의 벨류
+    const item = formData.get('item'); // input name="item" - sdlkfsjdf
+    const priority = formData.get('priority'); // select element에서 내가 선택한 필드의 벨류 -1
 
     const entries = formData.entries(); //Iterater{}
     for (let entry of entries) {
