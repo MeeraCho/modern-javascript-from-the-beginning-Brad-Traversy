@@ -1,6 +1,9 @@
 const itemForm = document.getElementById('item-form');
 const itemInput = document.getElementById('item-input'); 
 const itemList = document.getElementById('item-list'); //ul
+const clearBtn = document.getElementById('clear'); 
+const itemFilter = document.getElementById('filter');
+
 
 //--------------Add items to the List------------
 function addItem(e) {
@@ -9,7 +12,7 @@ function addItem(e) {
     const newItem = itemInput.value;
     
     //Validate Input
-    if (newItem.value === ''){
+    if (newItem === ''){
         alert('Please add an item.')
         return; 
     }
@@ -21,7 +24,10 @@ function addItem(e) {
     const button = createButton('remove-item btn-link text-red')
     li.appendChild(button);
 
+    //Add li to the DOM 
     itemList.appendChild(li);
+
+    checkUI();
 
     itemInput.value = '';
 }
@@ -42,9 +48,47 @@ function createIcon(classes) {
     return icon; 
 }
 
+//--------------Remove items---------------
+function removeItem(e){
+    // once click an icon, <li> will be removed. li > button > i
+    if (e.target.parentElement.classList.contains('remove-item')){
+        if(window.confirm('Are you sure?')){
+            e.target.parentElement.parentElement.remove();
+
+            checkUI();
+        }
+    }
+}
+
+function clearItems(e){
+    //option 1 
+    // itemList.innerHTML = '';
+    //option 2 
+    while(itemList.firstChild){
+        itemList.removeChild(itemList.firstChild)
+    }
+
+    checkUI();
+}
+
+//--------------Clear UI State---------------
+function checkUI() {
+    const items = itemList.querySelectorAll('li');
+    if (items.length === 0){
+        clearBtn.style.display = 'none';
+        itemFilter.style.display = 'none';
+    } else {
+        clearBtn.style.display = 'block';
+        itemFilter.style.display = 'block';
+    }
+}
+
+// -------------- Event Listeners ------------
 itemForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
+clearBtn.addEventListener('click', clearItems);
 
-
+checkUI()
 
 
 
