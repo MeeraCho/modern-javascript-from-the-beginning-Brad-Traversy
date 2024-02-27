@@ -5,8 +5,8 @@ const clearBtn = document.getElementById('clear');
 const itemFilter = document.getElementById('filter');
 
 
-//--------------Add items to the List------------
-function addItem(e) {
+//--------------Add items to DOM & LocalStorage------------
+function onAddItemSubmit(e) {
     e.preventDefault();
 
     const newItem = itemInput.value;
@@ -17,19 +17,46 @@ function addItem(e) {
         return; 
     }
 
+    //Create item DOM element
+    addItemToDOM(newItem)
+
+    //Add item to local storage
+    addItemToStorage(newItem)
+
+    checkUI();
+
+    itemInput.value = '';
+}
+
+function addItemToStorage(item){
+    //check to see if there is a item already in localStorage
+    let itemsFromStorage; 
+
+    if (localStorage.getItem('items') === null){ 
+        itemsFromStorage = []
+    } else {
+        //JSON.parse(): make array
+        itemsFromStorage = JSON.parse(localStorage.getItem('items'))
+    }
+
+    // Add new item to array
+    itemsFromStorage.push(item);
+
+    // Convert to JSON string first and then store to local storage
+    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+
+}
+
+function addItemToDOM(item){
     //Create list item 
     const li = document.createElement('li');
-    li.appendChild(document.createTextNode(newItem));
+    li.appendChild(document.createTextNode(item));
 
     const button = createButton('remove-item btn-link text-red')
     li.appendChild(button);
 
     //Add li to the DOM 
     itemList.appendChild(li);
-
-    checkUI();
-
-    itemInput.value = '';
 }
 
 function createButton(classes) {
@@ -60,7 +87,7 @@ function removeItem(e){
     }
 }
 
-function clearItems(e){
+function clearAllItems(e){
     //option 1 
     // itemList.innerHTML = '';
     //option 2 
@@ -69,6 +96,22 @@ function clearItems(e){
     }
 
     checkUI();
+}
+
+//--------------Filter Items---------------
+function filterItems(e){
+    const items = itemList.querySelectorAll('li');
+    const text = e.target.value.toLowerCase();
+
+    items.forEach(item => {
+        const itemName = item.firstChild.textContent.toLowerCase();
+        if (itemName.indexOf(text) != -1){
+            item.style.display = 'flex' //flex가 default로 되어있어서
+
+        } else {
+            item.style.display = 'none'
+        }
+    });
 }
 
 //--------------Clear UI State---------------
@@ -83,12 +126,16 @@ function checkUI() {
     }
 }
 
+
 // -------------- Event Listeners ------------
-itemForm.addEventListener('submit', addItem);
+itemForm.addEventListener('submit', onAddItemSubmit);
 itemList.addEventListener('click', removeItem);
-clearBtn.addEventListener('click', clearItems);
+clearBtn.addEventListener('click', clearAllItems);
+itemFilter.addEventListener('input', filterItems);
 
 checkUI()
+
+
 
 
 
