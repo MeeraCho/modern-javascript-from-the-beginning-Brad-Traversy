@@ -31,6 +31,11 @@ function onAddItemSubmit(e) {
         itemToEdit.remove();
         isEditMode = false; 
         // 위 작업을 하고 나서 input에 수정된 내용은 아랫줄에서 새롭게 아이템으로 추가된다
+    } else {
+        if (checkIfItemExists(newItem)) {
+            alert('That item already exists!');
+            return;
+        }
     }
 
     //Create item DOM element
@@ -107,13 +112,22 @@ function displayItems(){
 
 //--------------Click items---------------
 function onClickItem(e){
-    if(e.target.parentElement.classList.contains('remove-item')) {
+    if (e.target.parentElement.classList.contains('remove-item')) {
         // once click an icon, <li> will be removed. li > button > i
         removeItem(e.target.parentElement.parentElement);
     } else { 
-        setItemToEdit(e.target);
+        if (e.target.tagName === 'LI'){
+            setItemToEdit(e.target);
+        }
     }
 }
+
+//----------check duplicate items----------
+function checkIfItemExists(item) {
+    const itemsFromStorage = getItemsFromStorage();
+    return itemsFromStorage.includes(item);
+}
+
 
 //--------------Edit items---------------
 function setItemToEdit(item) {
@@ -187,7 +201,7 @@ function filterItems(e){
 //--------------Clear UI State---------------
 function checkUI() {
     itemInput.value = '';
-    
+
     const items = itemList.querySelectorAll('li');
     if (items.length === 0){
         clearBtn.style.display = 'none';
