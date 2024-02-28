@@ -3,6 +3,9 @@ const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list'); //ul
 const clearBtn = document.getElementById('clear'); 
 const itemFilter = document.getElementById('filter');
+const formBtn = itemForm.querySelector('button');
+let isEditMode = false;
+
 
 
 //--------------Add items to DOM & LocalStorage------------
@@ -15,6 +18,19 @@ function onAddItemSubmit(e) {
     if (newItem === ''){
         alert('Please add an item.')
         return; 
+    }
+
+    // Check for edit mode
+    if (isEditMode) {
+        const itemToEdit = itemList.querySelector('.edit-mode')
+        // 선택 아이템 로컬스토레지에서 없애기 
+        removeItemFromStorage(itemToEdit.textContent);
+        // edit-mode class 없애기 
+        itemToEdit.classList.remove('edit-mode');
+        // DOM에서 아이템 없애기 
+        itemToEdit.remove();
+        isEditMode = false; 
+        // 위 작업을 하고 나서 input에 수정된 내용은 아랫줄에서 새롭게 아이템으로 추가된다
     }
 
     //Create item DOM element
@@ -89,15 +105,31 @@ function displayItems(){
     checkUI()
 }
 
-//--------------Remove items---------------
+//--------------Click items---------------
 function onClickItem(e){
     if(e.target.parentElement.classList.contains('remove-item')) {
         // once click an icon, <li> will be removed. li > button > i
         removeItem(e.target.parentElement.parentElement);
+    } else { 
+        setItemToEdit(e.target);
     }
 }
 
+//--------------Edit items---------------
+function setItemToEdit(item) {
+    isEditMode = true;
+    // 4.다른 아이템 클릭되면 원래 글자 검은색으로 돌아옴 
+    itemList.querySelectorAll('li').forEach(i => i.classList.remove('edit-mode'))
+    // 1.클릭되면 회색으로 변환
+    item.classList.add('edit-mode');
+    // 2.Add item btn -> Update Item 으로 변환 
+    formBtn.innerHTML = '<i class="fa-solid fa-pen"></i> Update Item'
+    formBtn.style.backgroundColor = '#228B22'
+    // 3.클릭한 아이템 글자가 input box 안에 나타남 
+    itemInput.value = item.textContent; 
+}
 
+//--------------Remove items---------------
 function removeItem(item){
     if(window.confirm('Are you sure?')){
         // Remove item from DOM
@@ -154,6 +186,8 @@ function filterItems(e){
 
 //--------------Clear UI State---------------
 function checkUI() {
+    itemInput.value = '';
+    
     const items = itemList.querySelectorAll('li');
     if (items.length === 0){
         clearBtn.style.display = 'none';
@@ -162,6 +196,11 @@ function checkUI() {
         clearBtn.style.display = 'block';
         itemFilter.style.display = 'block';
     }
+
+    formBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Add Item';
+    formBtn.style.backgroundColor = '#333'
+
+    isEditMode = false;
 }
 
 
