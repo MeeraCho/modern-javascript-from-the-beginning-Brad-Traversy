@@ -1,0 +1,31 @@
+-----What is HTTP?-----
+* HyperText Transfer Protocol is the protocol for sending and receiving data on the web. 
+* HTTP is a client/server protocol. Requests are initiated by the client (you) and the server will respond with a 'response'.
+* The response could be HTML, CSS, JS files, images and other resources as well as data formatted as JSON or XML(outdated)
+
+-----Making Requests from JavaScript-----
+Many times you will want to fetch some data and update a specific part of the DOM/webpage.
+We can do this using JS. 
+
+AJAX / XMLHttpRequest object was the orginal way of doing this, 
+however, these days we mostly use the 'fetch API' that is available to us in the browser environment. 
+
+-----HTTP Methods-----
+GET Request:    Fetch/retrieve data from the sever
+POST Request:   Send data to the sever
+PUT & PATCH Request: Update data on a sever
+DELETE Request:     Delete data from a sever
+
+-----HTTP Status Codes-----
+100 Range Continue
+200 Range Success
+    201 Created
+    204 No Content
+300 Range Redirect
+    301 resources Moved
+400 Range Client Error
+    401 Unauthorized
+    403 Forbidden
+    404 Not Found
+500 Range Server Error
+
