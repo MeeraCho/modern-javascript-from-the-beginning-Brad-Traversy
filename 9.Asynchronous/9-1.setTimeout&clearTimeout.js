@@ -1,3 +1,5 @@
+
+
 //-----SetTimeout with anonymous function
 setTimeout(function () {
     console.log('Hello from callback')
