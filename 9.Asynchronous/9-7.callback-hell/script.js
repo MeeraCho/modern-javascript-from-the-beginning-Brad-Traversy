@@ -12,7 +12,7 @@ function getData(endpoint, cb){
   }, Math.floor(Math.random() * 3000) + 1000); //1000 ~ 4000
 }
 
-// ------callback hell 
+// ------callback hell -------
 getData('./movies.json', (data) => {
   console.log(data);
   getData('./actors.json', (data) => {
