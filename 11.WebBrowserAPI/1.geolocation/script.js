@@ -22,8 +22,8 @@ navigator.geolocation.getCurrentPosition(curSuccess, curError, curOptions);
 
 //------------------watchPosition()---------------------
 const target = {
-  latitude: 41.3874387,
-  longitude: -71.394839,
+  latitude: 53.2615237,
+  longitude: -113.5499661,
 }
 
 function watchSuccess(pos) {
@@ -31,6 +31,11 @@ function watchSuccess(pos) {
   console.log(`Latitude: ${coords.latitude}`)
   console.log(`Longitude: ${coords.longitude}`)
   console.log(`Within: ${coords.accuracy} meters`)
+
+  if(target.latitude === coords.latitude && target.logitude === coords.logitude) {
+    console.log('You have reached your destination.')
+    navigator.geolocation.clearWatch(id)
+  }
 }
 
 function watchError(err) {
@@ -44,7 +49,7 @@ const watchOptions = {
 };
 
 
-navigator.geolocation.watchPosition(watchSuccess, watchError, watchOptions);
+const id = navigator.geolocation.watchPosition(watchSuccess, watchError, watchOptions);
 
 
 
