@@ -16,3 +16,4 @@ function playSound(e) {
         key.classList.remove('playing')
     }, 100)
 }
+
