@@ -64,3 +64,4 @@ const obj1 = {}; //Literal syntax
 const obj2 = new Object(); //Object Contructor
 console.log(obj1, typeof obj1);
 console.log(obj2, typeof obj2);
+
