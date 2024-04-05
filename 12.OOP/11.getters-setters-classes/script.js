@@ -1,4 +1,4 @@
-// getter & setter with a class 
+// getter & setter with classes 
 
 class Person {
   constructor(firstName, lastName){
