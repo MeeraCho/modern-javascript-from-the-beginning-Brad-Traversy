@@ -10,6 +10,7 @@ class CalorieTracker {
     this._displayCalorieConsumed();
     this._displayCalorieBurned();
     this._displayCaloriesRemaining();
+    this._displayCaloriesProgress();
   }
 
   //-----Public Methods/API----- 
@@ -51,8 +52,29 @@ class CalorieTracker {
 
   _displayCaloriesRemaining(){
     const caloresRemainingEl = document.getElementById('calories-remaining');
+    const progressEl = document.getElementById('calorie-progress');
     const remaining = this._calorieLimit - this._totalCalories;
     caloresRemainingEl.innerHTML = remaining;
+
+    
+    if (remaining <= 0 ){
+      caloresRemainingEl.parentElement.parentElement.classList.remove('bg-light');
+      caloresRemainingEl.parentElement.parentElement.classList.add('bg-danger');
+      progressEl.classList.remove('bg-success');
+      progressEl.classList.add('bg-danger');
+    } else {
+      caloresRemainingEl.parentElement.parentElement.classList.add('bg-light');
+      caloresRemainingEl.parentElement.parentElement.classList.remove('bg-danger');
+      progressEl.classList.add('bg-success');
+      progressEl.classList.remove('bg-danger');
+    }
+  }
+
+  _displayCaloriesProgress(){
+    const progressEl = document.getElementById('calorie-progress');
+    const percentage = (this._totalCalories / this._calorieLimit) * 100;
+    const width = Math.min(percentage, 100); //This function call returns the smaller of the two values, percentage or 100. This is done to ensure that the progress bar width does not exceed 100%, even if the calculated percentage is greater than 100. So, if the percentage exceeds 100, the width of the progress bar will be capped at 100%.
+    progressEl.style.width = `${width}%`
   }
 
   //rendering DOM
@@ -61,6 +83,7 @@ class CalorieTracker {
     this._displayCalorieConsumed();
     this._displayCalorieBurned();
     this._displayCaloriesRemaining();
+    this._displayCaloriesProgress();
   }
 }
 
@@ -80,18 +103,4 @@ class Workout {
   }
 }
 
-const tracker = new CalorieTracker();
-
-const breakfast = new Meal('Breakfast', 400);
-const lunch = new Meal('Lunch', 300);
-tracker.addMeal(breakfast);
-tracker.addMeal(lunch);
-
-const run = new Workout('Morning Run', 200);
-tracker.addWorkout(run);
-
-console.log(tracker._meals);
-console.log(tracker._workouts);
-console.log(tracker._totalCalories); 
-console.log( Math.random().toString(16)); 
 
