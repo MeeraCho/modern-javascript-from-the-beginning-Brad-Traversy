@@ -47,6 +47,18 @@ class CalorieTracker {
     }
   }
 
+  setLimit(calorieLimit){
+    this._calorieLimit = calorieLimit; 
+    this._displayCalorieLimit();
+    this._render();
+  }
+
+  reset(){
+    this._totalCalories = 0;
+    this._meals = [];
+    this._workouts = [];
+    this._render();
+  }
 
   _displayCaloriesTotal(){
     const totalCalorieEl = document.getElementById('calories-total');
@@ -179,6 +191,7 @@ class App {
     document.getElementById('filter-meals').addEventListener('input', this._filterItems.bind(this, 'meal'));
     document.getElementById('filter-workouts').addEventListener('input', this._filterItems.bind(this, 'workout'));
     document.getElementById('reset').addEventListener('click', this._reset.bind(this));
+    document.getElementById('limit-form').addEventListener('submit', this._setLimit.bind(this));
   }
 
   _newItem(type, e){
@@ -233,9 +246,44 @@ class App {
 
   _reset(e){
     this._tracker.reset();
+    document.getElementById('meal-items').innerHTML = '';
+    document.getElementById('workout-items').innerHTML = '';
+    document.getElementById('filter-meals').value = '';
+    document.getElementById('filter-workouts').value = '';
+
+  }
+
+  _setLimit(e){
+    e.preventDefault();
+    const limit = document.getElementById('limit');
+
+    if (limit.value === ''){
+      alert('Please add a limit')
+      return;
+    }
+
+    this._tracker.setLimit(+limit.value);
+    limit.value = '';
+
+    // close modal
+    const modalEl = document.getElementById('limit-modal'); //modal parent id
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
   }
 }
 
+
+class Storage {
+  static getCalorieLimit() {
+    let calorieLimit;
+
+    calorieLimit = localStorage.getItem(name);
+  }
+
+  static setCalorieLimit(calorieLimit) {
+    localStorage.setItem('calorieLimit', calorieLimit);
+  }
+}
 
 const app = new App();
 
