@@ -3,7 +3,7 @@ class CalorieTracker {
     this._calorieLimit = Storage.getCalorieLimit(1800); 
     this._totalCalories = 0; 
     this._meals = Storage.getMeals();
-    this._workouts = [];
+    this._workouts = Storage.getWorkouts();
 
     this._displayCaloriesTotal();
     this._displayCalorieLimit();
@@ -16,8 +16,8 @@ class CalorieTracker {
   addMeal(meal){
     this._meals.push(meal);
     this._totalCalories += meal.calories;
-    Storage.updateTotalCalories(this._totalCalories);
     Storage.saveMeals(meal);
+    Storage.updateTotalCalories(this._totalCalories);
     this._displayNewMeals(meal);
     this._render();
     }
@@ -25,6 +25,7 @@ class CalorieTracker {
   addWorkout(workout){
     this._workouts.push(workout);
     this._totalCalories -= workout.calories;
+    Storage.saveWorkouts(workout);
     Storage.updateTotalCalories(this._totalCalories)
     this._displayNewWorkouts(workout);
     this._render();
@@ -35,7 +36,7 @@ class CalorieTracker {
     if ( index !== -1 ) {
       const meal = this._meals[index];
       this._totalCalories -= meal.calories;
-      Storage.updateTotalCalories(this._totalCalories)
+      Storage.updateTotalCalories(this._totalCalories);
       this._meals.splice(index, 1); // index에서 시작해 1개가 지워짐
       this._render();
     }
@@ -60,7 +61,8 @@ class CalorieTracker {
   }
 
   loadItems(){
-    this._meals.forEach(meal => this._displayNewMeals(meal))
+    this._meals.forEach(meal => this._displayNewMeals(meal));
+    this._workouts.forEach(workout => this._displayNewWorkouts(workout));
   }
 
   reset(){
@@ -335,10 +337,26 @@ class Storage {
     meals.push(meal);
     localStorage.setItem('meals', JSON.stringify(meals));
   }
+
+  static getWorkouts() {
+    let workouts;
+
+    if (localStorage.getItem('workouts') === null){
+      workouts = [];
+    } else {
+      workouts = JSON.parse(localStorage.getItem('workouts')); 
+    }
+    return workouts;
+  }
+
+  static saveWorkouts(workout){
+    const workouts = Storage.getWorkouts();
+    workouts.push(workout);
+    localStorage.setItem('workouts', JSON.stringify(workouts));
+  }
 }
 
 const app = new App();
-
 
 
 
