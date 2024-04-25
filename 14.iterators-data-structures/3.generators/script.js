@@ -1,6 +1,6 @@
 function* createTeamIterator(teams) {
-  for (let i = 0; i < teams.length; i++) {
-    yield teams[i];
+  for (let i = 0; i < teams.length; i++ ){
+    yield teams[i]
   }
 }
 
@@ -8,20 +8,27 @@ const teams = ['Red Sox', 'Yankees', 'Astros', 'Dodgers'];
 
 const iterator = createTeamIterator(teams);
 
-console.log(iterator.next().value); // Red Sox
-console.log(iterator.next().value); // Yankees
-console.log(iterator.next().value); // Astros
-console.log(iterator.next().value); // Dodgers
-console.log(iterator.next().done); // true
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next()); 
 
-// Use with for... of
-for (const team of createTeamIterator(teams)) {
+
+for ( const team of createTeamIterator(teams)) {
   console.log(team);
 }
+// Red Sox
+// Yankees
+// Astros
+// Dodgers
 
-// Use with spread operator
-console.log([...createTeamIterator(teams)]);
 
-// Use with destructuring
+console.log(...createTeamIterator(teams)); 
+// Red Sox Yankees Astros Dodgers
+
+
+// destructuring 
 const [first, second, third] = createTeamIterator(teams);
-console.log(first, second, third);
+console.log( first, second, third ); //Red Sox Yankees Astros
+
