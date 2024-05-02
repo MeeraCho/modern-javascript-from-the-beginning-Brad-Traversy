@@ -10,8 +10,8 @@ class Queue {
     this._count++;
   }
 
-  dequeue() {
-    if (this.isEmpty()) {
+  dequeue(){
+    if(this.isEmpty()){
       return undefined;
     }
 
@@ -26,9 +26,8 @@ class Queue {
 
   peek() {
     if (this.isEmpty()) {
-      return 'No items in the queue';
+      return 'No items in the queue'
     }
-
     return this._items[this._front];
   }
 
@@ -47,8 +46,8 @@ q.enqueue('Item 1');
 q.enqueue('Item 2');
 q.enqueue('Item 3');
 
-q.dequeue();
-q.dequeue();
+// q.dequeue(); 
+// q.dequeue();
 
 console.log('Front Item: ', q.peek());
 console.log('Queue Length: ', q.length());
